@@ -1,0 +1,123 @@
+%
+% Befehle und globale Einstellungen für das LaTeX Template für Abschlussarbeiten
+%
+% Autor: Simon Lehmann <simon.lmn@gmail.com>
+%
+
+% Befehle
+
+% Sorgt dafür, dass Kapitel immer auf einer rechten Seite beginnen.
+\newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
+
+% Befehle zum Setzen und Abrufen der Universität und eines optionalen Logos
+\newcommand{\theuniversity}{Hochschule Musterstadt}
+\newcommand{\university}[1]{\global\renewcommand{\theuniversity}{#1}}
+
+\newcommand{\theuniversitylogo}{}
+\newcommand{\universitylogo}[1]{\global\renewcommand{\theuniversitylogo}{#1}}
+
+% Befehle zum Setzen und Abrufen des Fachbereichs
+\newcommand{\thedepartment}{Fachbereich Musterwissenschaften}
+\newcommand{\department}[1]{\global\renewcommand{\thedepartment}{#1}}
+
+% Befehle zum Setzen und Abrufen des akad. Grades
+\newcommand{\theacademicdegree}{Bachelor of Science (B.Sc.)}
+\newcommand{\academicdegree}[1]{\global\renewcommand{\theacademicdegree}{#1}}
+
+% Befehle zum Setzen und Abrufen des Referenten
+\newcommand{\thesupervisor}{Prof. Dr. Max Mustermann}
+\newcommand{\supervisor}[1]{\global\renewcommand{\thesupervisor}{#1}}
+
+% Befehle zum Setzen und Abrufen des Korreferenten
+\newcommand{\thecosupervisor}{Prof. Dr. Max Mustermann}
+\newcommand{\cosupervisor}[1]{\global\renewcommand{\thecosupervisor}{#1}}
+
+% Befehle zum Setzen und Abrufen des (optionalen) externen Betreuers
+\newcommand{\theexternalsupervisor}{}
+\newcommand{\externalsupervisor}[1]{\global\renewcommand{\theexternalsupervisor}{#1}}
+
+% Befehle zum Setzen und Abrufen des Ortsnamen, der in der Erklärung verwendet
+% wird
+\newcommand{\thecity}{Musterstadt}
+\newcommand{\city}[1]{\global\renewcommand{\thecity}{#1}}
+
+\makeatletter % Zugriff auf interne Befehle
+% Autorenname, der mit \author{...} gesetzt wurde
+\newcommand{\theauthor}{\@author}
+
+% Datum, das mit \date{...} gesetzt wurde
+\newcommand{\thedate}{\@date}
+
+% Titel der Arbeit, der mit \title{...} gesetzt wurde
+\newcommand{\thetitle}{\@title}
+
+% Befehl um auf leere Inhalte zu testen
+\newcommand{\doIfText}[1]{%
+	\begingroup
+	\sbox0{#1}%
+	\ifdim\wd0=\z@
+		\endgroup
+		\expandafter\@gobble
+	\else
+		\endgroup
+		\expandafter\@firstofone
+	\fi}
+	
+\newcommand{\doIfNoText}[1]{%
+	\begingroup
+	\sbox0{#1}%
+	\ifdim\wd0=\z@
+		\endgroup
+		\expandafter\@firstofone
+	\else
+		\endgroup
+		\expandafter\@gobble
+	\fi}
+\makeatother
+
+% Flags für Verbreitungsformen
+\newboolean{publishinlibrary}
+\setboolean{publishinlibrary}{false}
+\newcommand{\publishInLibrary}{\setboolean{publishinlibrary}{true}}
+\newcommand{\dontPublishInLibrary}{\setboolean{publishinlibrary}{false}}
+
+\newboolean{publishtitleonline}
+\setboolean{publishtitleonline}{false}
+\newcommand{\publishTitleOnline}{\setboolean{publishtitleonline}{true}}
+\newcommand{\dontPublishTitleOnline}{\setboolean{publishtitleonline}{false}}
+
+\newboolean{publishdocumentonline}
+\setboolean{publishdocumentonline}{false}
+\newcommand{\publishDocumentOnline}{\setboolean{publishdocumentonline}{true}}
+\newcommand{\dontPublishDocumentOnline}{\setboolean{publishdocumentonline}{false}}
+
+
+% Globale Formatierungseinstellungen
+\renewcommand{\encodingdefault}{OT1}
+\renewcommand{\familydefault}{cmss} % Schriftfamilie auf Sans Serif
+\renewcommand{\glsdisplayfirst}[4]{\textit{#1#4}}
+\setcapindent{1em}
+
+% Anpassung der Ränder und Breitenverhältnisse
+% Der letzte Wert in oddsidemargin bestimmt die Bindekorrektur
+\newcommand{\setbindingcorrection}[1]{%
+	\setlength{\oddsidemargin}{2cm - 1in + #1}
+	\setlength{\textwidth}{\paperwidth - (1in + \hoffset) - \oddsidemargin - 4cm}
+	\setlength{\evensidemargin}{\paperwidth - (1in + \hoffset)*2 - \oddsidemargin - \textwidth}
+	\setlength{\marginparwidth}{4cm - \marginparsep - 1cm}
+	\setlength{\headwidth}{\textwidth + \marginparsep + \marginparwidth}
+}
+\setbindingcorrection{0.5cm}
+
+% Kopf- und Fußzeilen einrichten
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\lhead[\fancyplain{}{\bfseries\thepage}]%
+	{\fancyplain{}{\bfseries\rightmark}}
+\rhead[\fancyplain{}{\bfseries\leftmark}]%
+	{\fancyplain{}{\bfseries\thepage}}
+\cfoot{}
+
+
+

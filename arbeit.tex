@@ -2,44 +2,13 @@
 % -------------------- LaTeX-Template für Abschlussarbeiten --------------------
 %
 % Autor:    Simon Lehmann <simon.lehmann@gmx.de>
-% Version:  2.0 (2009-09-10)
+% Version:  3.0 (2013-04-10)
 % 
-% Versionshistorie: 
-% | 2.0 | 2009-09-10 | Umbenennung FH Wiesbaden in Hochschule RheinMain
-% | 1.1 | 2008-11-15 | Layout verbessert
-% | 1.0 | 2008-06-19 | Urversion
-% 
-% Das Template verwendet die KOMA-Script Dokumentenklassen und setzt einige
-% LaTeX Pakete voraus, die unter Umständen nicht im Standardumfang der lokalen
-% LaTeX Distribution enthalten sind. Erhältlich sind diese Pakete über das CTAN
-% (http://www.ctan.org/). Zur Installation siehe die Dokumentation des jeweili-
-% gen Pakets und der LaTeX Distribution.
-%
-% Weiterhin ist das Template auf die Verwendung von UTF-8 als Zeichenkodierung
-% ausgelegt. Dadurch können Umlaute und andere Sonderzeichen direkt verwendet
-% werden.
-%
-% Es sind für die variablen Felder auf der Titelseite und den formalen Erklär-
-% ungen Befehle definiert, mit denen diese gesetzt werden können. Siehe dazu
-% weiter unten den Abschnitt 'Vorspann'.
-% 
-% Für die Glossarerstellung wird das glossaries Paket als Nachfolger von
-% glossary verwendet. Das Paket ist leider noch nicht in den meisten Distribu-
-% tionen von Haus aus verfügbar und muss eventuell manuell über das CTAN (s.o.)
-% bezogen werden. Doku siehe <http://tug.ctan.org/tex-archive/macros/latex/
-% contrib/glossaries/glossaries-manual.html>
-%
-%
-% Zum Übersetzen sind in der Regel folgende Durchläufe nötig:
-%  1. latex arbeit
-%  2. bibtex arbeit (nur wenn schon Zitate im Text vorhanden sind)
-%  3. makeglossaries arbeit
-%  4. latex arbeit
-%  5. latex arbeit (damit Referenzen und Verzeichnisse stimmen)
+% Für eine nähere Erklärung des Templates siehe die beiliegende README.md.
 %
 % --------------------------- Dokumenteneinrichtung ----------------------------
 % Einsteigern wird empfohlen direkt zum Abschnitt 'Vorspann' weiter unten zu
-% springen und die dokumentenweiten Einstellungen zunächst nicht zu verändern.
+% springen und die anderen Einstellungen weiter oben nicht zu verändern.
 %
 \documentclass[ngerman,a4paper,11pt,twoside,openright,cleardoubleempty,halfparskip]{scrreprt}
 
@@ -52,6 +21,7 @@
 \usepackage{ifthen}
 \usepackage{calc}
 \usepackage{tabularx}
+\usepackage{setspace}
 
 % Laden von weiteren, nützlichen Paketen (je nach Bedarf)
 %\usepackage{subfigure} 
@@ -72,42 +42,18 @@
 \makeglossaries
 \loadglsentries{glossar} % Name der Glossardatei (ohne .tex)
 
-% Befehlsdefinitionen
-\input{commands}
+% Befehlsdefinitionen und Einstellungen
+\input{vorlage/preamble}
 
-% Globale Formatierungseinstellungen
-\renewcommand{\encodingdefault}{OT1}
-\renewcommand{\familydefault}{cmss} % Schriftfamilie auf Sans Serif
-\renewcommand{\glsdisplayfirst}[4]{\textit{#1#4}}
-\setcapindent{1em}
+% Wenn größerer Zeilenabstand gewünscht ist, entsprechend ändern
+%\singlespacing
+\onehalfspacing
+%\doublespacing
 
-% Anpassung der Ränder und Breitenverhältnisse
-% Der letzte Wert in oddsidemargin bestimmt die Bindekorrektur
-\setlength{\oddsidemargin}{2cm - 1in + 0.5cm}
-\setlength{\textwidth}{\paperwidth - (1in + \hoffset) - \oddsidemargin - 4cm}
-\setlength{\evensidemargin}{\paperwidth - (1in + \hoffset)*2 - \oddsidemargin - \textwidth}
-\setlength{\marginparwidth}{4cm - \marginparsep{} - 1cm}
-
-% Wenn größerer Zeilenabstand gewünscht ist, je nach Schriftgröße:
-% Abstand        10pt    11pt    12pt
-% -----------------------------------
-% anderthalb     1.25    1.21    1.24
-% doppelt        1.67    1.62    1.66
-%
-%\renewcommand{\baselinestretch}{1.21}
-
-% Kopf- und Fußzeilen einrichten
-\pagestyle{fancyplain}
-\setlength{\headwidth}{\textwidth}
-\addtolength{\headwidth}{\marginparsep}
-\addtolength{\headwidth}{\marginparwidth}
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-\lhead[\fancyplain{}{\bfseries\thepage}]%
-	{\fancyplain{}{\bfseries\rightmark}}
-\rhead[\fancyplain{}{\bfseries\leftmark}]%
-	{\fancyplain{}{\bfseries\thepage}}
-\cfoot{}
+% Bindekorrektur: der Abstand am linken Seitenrand für die Bindung
+% ACHTUNG: Dadurch ändert sich die Textbreite, was zur Verschiebung von
+% Überschriften, Absätzen und vor allem Abbildungen führen kann.
+\setbindingcorrection{0.5cm}
 
 \begin{document}
 % ---------------------------------- Vorspann ----------------------------------
@@ -116,33 +62,25 @@
 %
 \title{Titel der Arbeit}
 \author{Name des Autoren}
+\date{Datum der Abgabe}
+\university{Hochschule RheinMain}
+\universitylogo{vorlage/hsrm-logo}
+\department{Fachbereich Design Informatik Medien}
+\academicdegree{Bachelor of Science (B.Sc.)}
 \supervisor{Name des Referenten}
 \cosupervisor{Name des Korreferenten}
-\date{Datum der Abgabe}
+%\externalsupervisor{Name eines externen Betreuers}
 \city{Ort}
 
 % Folgende Befehle steuern, welchen Verbreitungsformen zugestimmt wird. Nicht
 % gewünschte Verbreitungsformen entsprechend auskommentieren.
 %
-\publishlibrary  % Einstellung der Arbeit in die Bibliothek der FHW
-\publishtitle    % Veröffentlichung des Titels der Arbeit im Internet
-\publishdocument % Veröffentlichung der Arbeit im Internet
+\publishInLibrary      % Einstellung der Arbeit in die Bibliothek
+\publishTitleOnline    % Veröffentlichung des Titels der Arbeit im Internet
+\publishDocumentOnline % Veröffentlichung der Arbeit im Internet
 
-% Ab hier sollten keine Änderungen des Vorspanns nötig sein!
-% -> Weiter zum Hauptteil
-
-\pagenumbering{roman} % Bis zum ersten Kapitel mit römischen Seitenzahlen
-
-\input{titel} % Titelseite (wird automatisch mit Werten von oben gefüllt)
-\clearemptydoublepage % Sorgt dafür, dass die nächste Seite rechts beginnt
-
-\include{vorspann} % Erklärung zur Prüfungsordnung und Verwendung der Arbeit
-\clearemptydoublepage
-
-\tableofcontents % Inhaltsverzeichnis generieren
-
-\clearemptydoublepage
-\pagenumbering{arabic}
+% Vorspann erzeugen, enthält u.a. Titelseite, Erklärungen und Inhaltsverzeichnis
+\input{vorlage/vorspann}
 
 % --------------------------------- Hauptteil ----------------------------------
 % Im diesen Teil werden die einzelnen Kapitel eingefügt, die sinnvollerweise
@@ -150,7 +88,7 @@
 
 \include{kapitel/einleitung}
 
-%\include{kapitel/zweileitung}
+%\include{kapitel/grundlagen}
 
 % und so weiter ...
 
@@ -160,6 +98,7 @@
 \appendix
 
 %\include{kapitel/einanhang}
+
 
 % Ausgabe des Glossars (oder der Glossare, wenn mehrere definiert sind)
 \printglossaries

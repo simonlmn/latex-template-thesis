@@ -1,4 +1,13 @@
-\section*{Erklärung gemäß PO Teil A § 6.4.2}
+%
+% Erklärungen für das LaTeX Template für Abschlussarbeiten
+%
+% Enthält eine Erklärungen über die selbstständige Anfertigung der Arbeit
+% und wie die Arbeit verbreitet werden darf.
+%
+% Autor: Simon Lehmann <simon.lmn@gmail.com>
+%
+
+\section*{Selbstständigkeitserklärung}
 
 Ich erkläre hiermit,
 \begin{itemize}
@@ -14,7 +23,7 @@ Ich erkläre hiermit,
 
 \vfill
 
-\section*{Erklärung zur Verwendung der Diplomarbeit}
+\section*{Erklärung zur Veröffentlichung}
 
 Hiermit erkläre ich mein Einverständnis mit den im folgenden aufgeführten Verbreitungsformen dieser Abschlussarbeit:
 
@@ -23,11 +32,11 @@ Hiermit erkläre ich mein Einverständnis mit den im folgenden aufgeführten Ver
 	\hline
 	\textbf{Verbreitungsform} & \textbf{Ja} & \textbf{Nein}
 	\\\hline
-	Einstellung der Arbeit in die Bibliothek der Hochschule RheinMain & \ifthenelse{\boolean{publishlibrary}}{$\times$}{} & \ifthenelse{\boolean{publishlibrary}}{}{$\times$}
+	Einstellung der Arbeit in die Bibliothek der \theuniversity & \ifthenelse{\boolean{publishinlibrary}}{$\times$}{} & \ifthenelse{\boolean{publishinlibrary}}{}{$\times$}
 	\\\hline
-	Veröffentlichung des Titels der Arbeit im Internet & \ifthenelse{\boolean{publishtitle}}{$\times$}{} & \ifthenelse{\boolean{publishtitle}}{}{$\times$}
+	Veröffentlichung des Titels der Arbeit im Internet & \ifthenelse{\boolean{publishtitleonline}}{$\times$}{} & \ifthenelse{\boolean{publishtitleonline}}{}{$\times$}
 	\\\hline
-	Veröffentlichung der Arbeit im Internet & \ifthenelse{\boolean{publishdocument}}{$\times$}{} & \ifthenelse{\boolean{publishdocument}}{}{$\times$}
+	Veröffentlichung der Arbeit im Internet & \ifthenelse{\boolean{publishdocumentonline}}{$\times$}{} & \ifthenelse{\boolean{publishdocumentonline}}{}{$\times$}
 	\\\hline
 \end{tabularx}
 
