@@ -10,7 +10,7 @@
 % Einsteigern wird empfohlen direkt zum Abschnitt 'Vorspann' weiter unten zu
 % springen und die anderen Einstellungen weiter oben nicht zu verändern.
 %
-\documentclass[ngerman,a4paper,11pt,twoside,openright,cleardoubleempty,halfparskip]{scrreprt}
+\documentclass[ngerman,a4paper,11pt,twoside,openright,cleardoublepage=empty,parskip=half]{scrreprt}
 
 % Erforderliche Pakete
 \usepackage[utf8]{inputenc}
@@ -37,6 +37,9 @@
 % 'glossaries' Paket nach z.B. hyperref geladen werden muss.
 \usepackage{bibgerm}
 \usepackage[toc,acronym]{glossaries}
+
+% Fixt Unverträglichkeiten zwischen KOMA-Script 3 und anderen Paketen (u.a. float)
+\usepackage{scrhack}
 
 % Glossar(e) laden und erstellen
 \makeglossaries
